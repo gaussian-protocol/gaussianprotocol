@@ -1,7 +1,7 @@
 {
   "rinkeby": {
     "nContractAddress": "0x3d8692BC49452FB8E83A3CCf8d8959387FCba9c2",
-    "mainContractAddress": "0x52E798796069B41A0a4C47715d11749E2aCAc7CD"
+    "mainContractAddress": "0x1Fd57E8Bf8A372111480798D455EF8602a0f75E8"
   },
   "mainnet": {
     "nContractAddress": "0x05a46f1e545526fb803ff974c790acea34d1f2d6",

@@ -149,7 +149,7 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
     function tokenSVG(uint256 tokenId) public view returns (string memory) {
         uint256[8] memory numbers = getNumbers(tokenId);
         string[10] memory parts;
-        parts[0] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { font-family: monospace; font-weight: bold; font-size: 16px; }</style><rect width="100%" height="100%" fill="black" />';
+        parts[0] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { font-family: monospace; font-weight: bold; font-size: 16px; } .sig { font-size: 10px; font-weight: normal;}</style><rect width="100%" height="100%" fill="black" />';
 
         parts[1] = svgLine(numbers[0], 0);
         parts[2] = svgLine(numbers[1], 1);
@@ -159,7 +159,7 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
         parts[6] = svgLine(numbers[5], 5);
         parts[7] = svgLine(numbers[6], 6);
         parts[8] = svgLine(numbers[7], 7);
-        parts[9] = "</svg>";
+        parts[9] = '<text x="245" y="340" fill="#fff" class="base sig">~&#119977;(10,4) series</text></svg>';
 
         string memory output = string(
             abi.encodePacked(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8])
