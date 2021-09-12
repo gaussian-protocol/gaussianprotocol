@@ -9,6 +9,7 @@ import "./interfaces/IN.sol";
 
 /**
  * @title TheGaussianProtocol
+ * @author Designed by @syntroNFT
  */
 contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
     using Strings for uint256;
@@ -98,7 +99,7 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
     }
 
     function _mintNumbers(uint256 tokenId) internal virtual {
-        tokenSeeds[tokenId] = toString(tokenId);
+        tokenSeeds[tokenId] = string(abi.encodePacked(toString(tokenId), msg.sender, block.number.toString()));
         _safeMint(msg.sender, tokenId);
     }
 
@@ -113,44 +114,52 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
         _mintNumbers(tokenId);
     }
 
+    function svgLine(uint256 value, uint256 index) internal pure returns (string memory) {
+        string memory output;
+        if (value >= 8 && value <= 12) {
+            output = "#fff";
+            // white
+        } else if (value >= 6 && value <= 14) {
+            output = "#03AE00";
+            // green
+        } else if (value >= 4 && value <= 16) {
+            output = "#3B19FF";
+            // blue
+        } else if (value >= 2 && value <= 18) {
+            output = "#BE7E00";
+            // orange
+        } else {
+            output = "#AE0000";
+            // red
+        }
+        output = string(
+            abi.encodePacked(
+                '<text x="10" y="',
+                toString((index + 1) * 20),
+                '" fill="',
+                output,
+                '" class="base">',
+                toString(value),
+                '</text>'
+            )
+        );
+        return output;
+    }
+
     function tokenSVG(uint256 tokenId) public view returns (string memory) {
         uint256[8] memory numbers = getNumbers(tokenId);
-        string[17] memory parts;
-        parts[
-        0
-        ] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { fill: white; font-family: serif; font-size: 14px; }</style><rect width="100%" height="100%" fill="black" /><text x="10" y="20" class="base">';
+        string[10] memory parts;
+        parts[0] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { font-family: serif; font-size: 14px; }</style><rect width="100%" height="100%" fill="black" />';
 
-        parts[1] = toString(numbers[0]);
-
-        parts[2] = '</text><text x="10" y="40" class="base">';
-
-        parts[3] = toString(numbers[1]);
-
-        parts[4] = '</text><text x="10" y="60" class="base">';
-
-        parts[5] = toString(numbers[2]);
-
-        parts[6] = '</text><text x="10" y="80" class="base">';
-
-        parts[7] = toString(numbers[3]);
-
-        parts[8] = '</text><text x="10" y="100" class="base">';
-
-        parts[9] = toString(numbers[4]);
-
-        parts[10] = '</text><text x="10" y="120" class="base">';
-
-        parts[11] = toString(numbers[5]);
-
-        parts[12] = '</text><text x="10" y="140" class="base">';
-
-        parts[13] = toString(numbers[6]);
-
-        parts[14] = '</text><text x="10" y="160" class="base">';
-
-        parts[15] = toString(numbers[7]);
-
-        parts[16] = "</text></svg>";
+        parts[1] = svgLine(numbers[0], 0);
+        parts[2] = svgLine(numbers[1], 1);
+        parts[3] = svgLine(numbers[2], 2);
+        parts[4] = svgLine(numbers[3], 3);
+        parts[5] = svgLine(numbers[4], 4);
+        parts[6] = svgLine(numbers[5], 5);
+        parts[7] = svgLine(numbers[6], 6);
+        parts[8] = svgLine(numbers[7], 7);
+        parts[9] = "</svg>";
 
         string memory output = string(
             abi.encodePacked(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8])
@@ -158,14 +167,7 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
         output = string(
             abi.encodePacked(
                 output,
-                parts[9],
-                parts[10],
-                parts[11],
-                parts[12],
-                parts[13],
-                parts[14],
-                parts[15],
-                parts[16]
+                parts[9]
             )
         );
 
