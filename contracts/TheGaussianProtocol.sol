@@ -117,20 +117,20 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
     function svgLine(uint256 value, uint256 index) internal pure returns (string memory) {
         string memory output;
         if (value >= 8 && value <= 12) {
-            output = "#fff";
             // white
+            output = "#fff";
         } else if (value >= 6 && value <= 14) {
-            output = "#03AE00";
             // green
+            output = "#03bf00";
         } else if (value >= 4 && value <= 16) {
-            output = "#3B19FF";
             // blue
+            output = "#009ed2";
         } else if (value >= 2 && value <= 18) {
-            output = "#BE7E00";
-            // orange
+            // yellow
+            output = "#f1f100";
         } else {
-            output = "#AE0000";
             // red
+            output = "#ca0303";
         }
         output = string(
             abi.encodePacked(
@@ -149,7 +149,7 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
     function tokenSVG(uint256 tokenId) public view returns (string memory) {
         uint256[8] memory numbers = getNumbers(tokenId);
         string[10] memory parts;
-        parts[0] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { font-family: serif; font-size: 14px; }</style><rect width="100%" height="100%" fill="black" />';
+        parts[0] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { font-family: monospace; font-weight: bold; font-size: 16px; }</style><rect width="100%" height="100%" fill="black" />';
 
         parts[1] = svgLine(numbers[0], 0);
         parts[2] = svgLine(numbers[1], 1);
@@ -192,9 +192,9 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
             bytes(
                 string(
                     abi.encodePacked(
-                        '{"name": "The Gaussian Protocol #',
+                        '{"name": "Gaussian #',
                         toString(tokenId),
-                        '", "description": "Randomly generated numbers on-chain with a Gaussian distribution.", "image": "',
+                        '", "description": "A set of 8 random numbers whose rarity follows a Gaussian distribution. Generated and stored on-chain using the power of the central limit theorem.", "image": "',
                         output,
                         '"}'
                     )
