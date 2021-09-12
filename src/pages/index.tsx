@@ -41,13 +41,10 @@ export default function Home() {
             The Gaussian Protocol
           </Heading>
           <Text fontSize={["1.25rem"]} color="whiteAlpha.700">
-            Generated and stored on chain using one of your Ns
+            A set of 8 random numbers whose rarity follows a Gaussian distribution. Generated and stored on-chain using
+            the power of the central limit theorem.
           </Text>
         </Box>
-
-        <Text fontSize={["1rem", "1.2rem"]} color="whiteAlpha.700" mt={3}>
-          Select one of your Ns to get started
-        </Text>
 
         <Box textAlign="center" my={8}>
           {isConnected ? (
