@@ -17,8 +17,8 @@ task("deploy", "Deploy main contract", async (taskArgs, hre) => {
   const gasPrice = await promptForGasPrice(hre, contractFactory.signer)
   const deploymentCost = await contractFactory.signer.estimateGas(contractFactory.getDeployTransaction(nContractAddress, { gasPrice }))
   console.log("Estimated cost to deploy contract:", hre.ethers.utils.formatUnits(deploymentCost.mul(gasPrice), "ether"), "ETH")
-  
-  const contract = await contractFactory.deploy(nContractAddress)
+
+  const contract = await contractFactory.deploy(nContractAddress, { gasPrice })
   const deployed = await contract.deployed()
 
   persistMainContractAddress(hre, deployed.address)
