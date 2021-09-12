@@ -23,7 +23,7 @@ export default function Mint() {
     <Layout requireWallet>
       {selectedN ? (
         isSuccess ? (
-          <SuccessStep selectedN={selectedN} />
+          <SuccessStep tokenId={parseInt(selectedN.id)} />
         ) : (
           <MintStep
             onCancel={handleCancelMint}

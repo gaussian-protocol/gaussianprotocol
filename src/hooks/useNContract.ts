@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import { N, N__factory } from "../../shared/contract_types"
+import { NProject, NProject__factory } from "../../shared/contract_types"
 import { getNContractAddress } from "../utils/network"
 import { useBackupProvider } from "./useBackupProvider"
 import { useWallet } from "./useWallet"
@@ -10,7 +10,7 @@ export enum ContractConnectionType {
 }
 
 export type UseNContractValue = {
-  nContract: N
+  nContract: NProject
   connectionType: ContractConnectionType
 }
 
@@ -26,7 +26,7 @@ export function useNContract(): UseNContractValue {
       }
       const contractAddress = getNContractAddress()
       console.log(`Connecting to N contract at address: ${contractAddress}`)
-      return N__factory.connect(contractAddress, injectedProvider ?? provider)
+      return NProject__factory.connect(contractAddress, injectedProvider ?? provider)
     },
     [provider, injectedProvider],
   )

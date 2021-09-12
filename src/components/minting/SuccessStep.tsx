@@ -3,26 +3,28 @@
 import { Box, Button, Flex, Heading, Link, Text } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { SubgraphN } from "../../clients/n"
+import { parseMetadata } from "../../../shared/utils/metadata"
 import { useMainContract } from "../../hooks/useMainContract"
 import { getNetworkConfig } from "../../utils/network"
 import { ROUTES } from "../../utils/routing"
 
 export type SuccessStepProps = {
-  selectedN: SubgraphN
+  tokenId: number
 }
 
-export const SuccessStep: React.FC<SuccessStepProps> = ({ selectedN }) => {
+export const SuccessStep: React.FC<SuccessStepProps> = ({ tokenId }) => {
   const { mainContract } = useMainContract()
   const [svgContent, setSvgContent] = useState<string | null>(null)
   const router = useRouter()
 
-  const numericId = parseInt(selectedN.id)
-
-  const retrieveRuneSvg = useCallback(
+  const retrieveTokenAsset = useCallback(
     async (tokenId: number) => {
-      const svgContent = await mainContract.tokenSVG(tokenId)
-      setSvgContent(btoa(svgContent))
+      const encodedMetadata = await mainContract.tokenURI(tokenId)
+      const parsedMetadata = parseMetadata(encodedMetadata, false)
+      console.log("parsedMetadata")
+      console.log(parsedMetadata)
+      console.log("----")
+      setSvgContent(parsedMetadata.image)
     },
     [mainContract],
   )
@@ -32,8 +34,8 @@ export const SuccessStep: React.FC<SuccessStepProps> = ({ selectedN }) => {
   }, [router])
 
   useEffect(() => {
-    retrieveRuneSvg(numericId)
-  }, [retrieveRuneSvg, numericId])
+    retrieveTokenAsset(tokenId)
+  }, [retrieveTokenAsset, tokenId])
 
   const openSeaUrl: string | undefined = useMemo(() => {
     if (!process.browser) return
@@ -44,15 +46,15 @@ export const SuccessStep: React.FC<SuccessStepProps> = ({ selectedN }) => {
     } = getNetworkConfig()
     if (!openSeaBaseUrl) return
 
-    return `${openSeaBaseUrl}/assets/${mainContractAddress}/${numericId}`
-  }, [numericId])
+    return `${openSeaBaseUrl}/assets/${mainContractAddress}/${tokenId}`
+  }, [tokenId])
 
   return (
     <Box textAlign="center" width="full">
       <Heading as="h1" size="4xl" fontSize={["2xl", "3xl", "4xl"]} mb={4}>
-        Mint Rune
+        Mint Gaussian
       </Heading>
-      <Text>Success! You have minted #{selectedN.id}</Text>
+      <Text>Success! You have minted #{tokenId}</Text>
       <Box maxWidth="400px" width="90%" marginX="auto" marginY={3}>
         <Box
           backgroundColor="gray.800"
@@ -61,7 +63,7 @@ export const SuccessStep: React.FC<SuccessStepProps> = ({ selectedN }) => {
           borderStyle="solid"
           width="full"
         >
-          <img src={`data:image/svg+xml;base64,${svgContent}`} />
+          <img src={svgContent ?? undefined} />
         </Box>
       </Box>
 

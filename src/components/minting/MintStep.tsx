@@ -61,9 +61,9 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
   return (
     <Box textAlign="center" width="full">
       <Heading as="h1" size="4xl" fontSize={["2xl", "3xl", "4xl"]} mb={4}>
-        Mint Rune
+        Mint Gaussian
       </Heading>
-      <Text>You are about to mint a Rune with N #{selectedN.id}</Text>
+      <Text>You are about to mint a Gaussian with N #{selectedN.id}</Text>
       <Box
         maxWidth="400px"
         width="90%"

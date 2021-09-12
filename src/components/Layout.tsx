@@ -1,4 +1,4 @@
-import { Box, Flex, FlexProps, Text } from "@chakra-ui/react"
+import { Box, Flex, FlexProps, Image, Text } from "@chakra-ui/react"
 import Link from "next/link"
 import React from "react"
 import { useWallet } from "../hooks/useWallet"
@@ -15,30 +15,28 @@ export type LayoutProps = {
 const containerPadding = 8
 
 const Layout: React.FC<LayoutProps> = ({
-  children,
-  headerContent,
-  buttonContent,
-  containerProps,
-  requireWallet = false,
-  hideLogo = false,
-}) => {
+                                         children,
+                                         headerContent,
+                                         buttonContent,
+                                         containerProps,
+                                         requireWallet = false,
+                                         hideLogo = false,
+                                       }) => {
   const { isConnected } = useWallet()
   return (
     <Box minH={"100vh"}>
       <Flex flexDir="column" minH="100vh">
         <Flex p={containerPadding} zIndex={1} alignItems="center">
-          <Link href="/" passHref>
-            <Text
-              fontFamily="heading"
-              fontSize="24px"
-              cursor="pointer"
-              color="#9999"
-              _hover={{ color: "whiteAlpha.800" }}
-              hidden={hideLogo}
-            >
-              ru<span style={{ color: "#fff" }}>n</span>es
-            </Text>
-          </Link>
+          {!hideLogo && (
+            <Link href="/" passHref>
+              <Image
+                src="/gaussian_protocol_logo_small.jpg"
+                height="50px"
+                cursor="pointer"
+                _hover={{ opacity: 0.6 }}
+              />
+            </Link>
+          )}
           {headerContent}
           <Flex justifyContent="flex-end" flex={1}>
             {buttonContent}

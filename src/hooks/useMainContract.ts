@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import { Rune, Rune__factory } from "../../shared/contract_types"
+import { TheGaussianProtocol, TheGaussianProtocol__factory } from "../../shared/contract_types"
 import { getMainContractAddress } from "../utils/network"
 import { useBackupProvider } from "./useBackupProvider"
 import { useWallet } from "./useWallet"
@@ -10,7 +10,7 @@ export enum ContractConnectionType {
 }
 
 export type UseMainContractValue = {
-  mainContract: Rune
+  mainContract: TheGaussianProtocol
   connectionType: ContractConnectionType
 }
 
@@ -21,7 +21,7 @@ export function useMainContract(): UseMainContractValue {
   const mainContract = useMemo(
     () =>
       process.browser
-        ? Rune__factory.connect(getMainContractAddress(), injectedProvider ?? provider)
+        ? TheGaussianProtocol__factory.connect(getMainContractAddress(), injectedProvider ?? provider)
         : null,
     [provider, injectedProvider],
   )

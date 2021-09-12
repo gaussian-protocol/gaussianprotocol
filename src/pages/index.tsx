@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react"
+import { Box, Button, Heading, Text } from "@chakra-ui/react"
 
 import "@fontsource/source-serif-pro/400.css"
 import { motion } from "framer-motion"
@@ -6,7 +6,6 @@ import { useRouter } from "next/router"
 import React, { useCallback } from "react"
 import { ConnectWalletButton } from "../components/ConnectWalletButton"
 import { ExternalLogos } from "../components/ExternalLogos"
-import { HardCodedRune } from "../components/HardCodedRune"
 import Layout from "../components/Layout"
 import { useWallet } from "../hooks/useWallet"
 import { ROUTES } from "../utils/routing"
@@ -34,33 +33,17 @@ export default function Home() {
           <Heading
             as="h1"
             size="4xl"
-            fontSize={["7xl", "7xl", "8xl"]}
+            fontSize={["5xl", "5xl", "7xl"]}
             fontWeight="400"
             mb={2}
             color="#9999"
           >
-            ru
-            <MotionBox
-              display="inline-block"
-              textShadow={"0px 0px 0px rgba(0, 0, 0, 0)"}
-              animate={{
-                color: "#FFF",
-                textShadow: "0px 0px 20px rgba(255, 255, 255, .7)",
-              }}
-              transition={{ duration: 2, delay: 1 }}
-            >
-              n
-            </MotionBox>
-            es
+            The Gaussian Protocol
           </Heading>
           <Text fontSize={["1.25rem"]} color="whiteAlpha.700">
             Generated and stored on chain using one of your Ns
           </Text>
         </Box>
-
-        <Flex justifyContent="center" mt={-4}>
-          <HardCodedRune />
-        </Flex>
 
         <Text fontSize={["1rem", "1.2rem"]} color="whiteAlpha.700" mt={3}>
           Select one of your Ns to get started

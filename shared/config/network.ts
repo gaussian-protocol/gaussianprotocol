@@ -15,10 +15,8 @@ export enum EthNetwork {
   rinkeby = "rinkeby",
 }
 
-const contractConfig: Record<
-  EthNetwork.mainnet | EthNetwork.rinkeby,
-  ContractConfiguration
-> = persistedNetworks
+const contractConfig: Record<EthNetwork.mainnet | EthNetwork.rinkeby,
+  ContractConfiguration> = persistedNetworks
 let localContractConfig: Record<EthNetwork.localhost, ContractConfiguration> =
   persistedLocalNetworks
 try {
@@ -65,7 +63,7 @@ export const NETWORK_CONFIG: Record<EthNetwork, EthNetworkConfig> = {
     nGraphUrl: "https://api.thegraph.com/subgraphs/name/knav-eth/the-n-project",
     baseFrontendUrl: "https://nrunes.io",
     openSeaBaseUrl: "https://opensea.io",
-    openSeaProjectSlug: "runes-project",
+    openSeaProjectSlug: "the-gaussian-protocol",
   },
   rinkeby: {
     name: "rinkeby",
@@ -76,6 +74,6 @@ export const NETWORK_CONFIG: Record<EthNetwork, EthNetworkConfig> = {
     nGraphUrl: "https://api.thegraph.com/subgraphs/name/knav-eth/the-n-project-rinkeby",
     baseFrontendUrl: "https://runes.vercel.app",
     openSeaBaseUrl: "https://testnets.opensea.io",
-    openSeaProjectSlug: "rune-fnficmq5dj",
+    openSeaProjectSlug: "the-gaussian-protocol",
   },
 }
