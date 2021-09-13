@@ -47,6 +47,7 @@ interface TheGaussianProtocolInterface extends ethers.utils.Interface {
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
     "setBaseImageURI(string)": FunctionFragment;
+    "setBaseURI(string)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
     "togglePublicSale()": FunctionFragment;
@@ -148,6 +149,7 @@ interface TheGaussianProtocolInterface extends ethers.utils.Interface {
     functionFragment: "setBaseImageURI",
     values: [string]
   ): string;
+  encodeFunctionData(functionFragment: "setBaseURI", values: [string]): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
@@ -239,6 +241,7 @@ interface TheGaussianProtocolInterface extends ethers.utils.Interface {
     functionFragment: "setBaseImageURI",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "setBaseURI", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -478,6 +481,11 @@ export class TheGaussianProtocol extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    setBaseURI(
+      prefix: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -668,6 +676,11 @@ export class TheGaussianProtocol extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  setBaseURI(
+    prefix: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   supportsInterface(
     interfaceId: BytesLike,
     overrides?: CallOverrides
@@ -840,6 +853,8 @@ export class TheGaussianProtocol extends BaseContract {
     ): Promise<void>;
 
     setBaseImageURI(prefix: string, overrides?: CallOverrides): Promise<void>;
+
+    setBaseURI(prefix: string, overrides?: CallOverrides): Promise<void>;
 
     supportsInterface(
       interfaceId: BytesLike,
@@ -1042,6 +1057,11 @@ export class TheGaussianProtocol extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    setBaseURI(
+      prefix: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -1213,6 +1233,11 @@ export class TheGaussianProtocol extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     setBaseImageURI(
+      prefix: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setBaseURI(
       prefix: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;

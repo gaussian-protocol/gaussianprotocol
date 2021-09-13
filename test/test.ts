@@ -98,7 +98,7 @@ describe("TheGaussianProtocol", function() {
     await contract.mint(728)
 
     const numbers = await contract.getNumbers(728)
-    expect(numbers.map(n => n.toNumber())).to.eql([10, 15, 11, 9, 10, 9, 8, 11])
+    expect(numbers.map(n => n.toNumber())).to.eql([8, 11, 10, 11, 11, 10, 13, 11])
   })
 
   type TokenMetadata = {
@@ -133,7 +133,7 @@ describe("TheGaussianProtocol", function() {
 
     const metadataStr = await contract.tokenURI(728)
     const metadata = parseMetadata(metadataStr)
-    expect(metadata.name).to.equal("The Gaussian Protocol #728")
+    expect(metadata.name).to.equal("Gaussian #728")
   })
 
   it("should return svg image when baseImageURI isn't set", async function() {
@@ -154,5 +154,14 @@ describe("TheGaussianProtocol", function() {
     const metadata = parseMetadata(metadataStr)
     expect(metadata.image).to.contain(".png")
     expect(metadata.image).to.contain("https://thegaussianprotocol.mypinata")
+  })
+
+  it("should return metadata url when baseURI is set", async function() {
+    await contract.togglePublicSale()
+    await contract.mint(1337)
+    await contract.setBaseURI("https://gaussianprotocol.io/api/v1/metdata")
+
+    const metadataStr = await contract.tokenURI(1337)
+    expect(metadataStr).to.contain("https://gaussianprotocol.io/api/v1/metdata")
   })
 })

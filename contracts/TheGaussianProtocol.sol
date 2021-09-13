@@ -18,7 +18,8 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
 
     IN public immutable n;
     bool public publicSaleActive = false;
-    string private _imageUriPrefix = "";
+    string private _imageUriPrefix;
+    string private _uriPrefix;
 
     mapping(uint256 => string) private tokenSeeds;
 
@@ -28,6 +29,10 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
 
     function setBaseImageURI(string memory prefix) public onlyOwner {
         _imageUriPrefix = prefix;
+    }
+
+    function setBaseURI(string memory prefix) public onlyOwner {
+        _uriPrefix = prefix;
     }
 
     function togglePublicSale() public onlyOwner {
@@ -176,6 +181,10 @@ contract TheGaussianProtocol is ERC721Enumerable, ReentrancyGuard, Ownable {
 
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+
+        if (bytes(_uriPrefix).length > 0) {
+            return string(abi.encodePacked(_uriPrefix, tokenId.toString()));
+        }
 
         string memory output;
         if (bytes(_imageUriPrefix).length > 0) {
