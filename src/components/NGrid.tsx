@@ -1,6 +1,6 @@
 import { Box, Tooltip } from "@chakra-ui/react"
 import React from "react"
-import { SubgraphN } from "../clients/n"
+import { SubgraphN } from "../../shared/clients/n"
 import { NWithAvailability } from "../hooks/useAvailableWalletNs"
 import { GRID_ANIMATION_VARIANTS, MotionGrid, MotionGridItem } from "../utils/animation"
 import NCard from "./NCard"

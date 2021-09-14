@@ -1,6 +1,6 @@
 import { Alert, AlertIcon, Box, Button, Heading, Link, Text } from "@chakra-ui/react"
 import React, { useCallback, useMemo, useState } from "react"
-import { SubgraphN } from "../../clients/n"
+import { SubgraphN } from "../../../shared/clients/n"
 import { useMainContract } from "../../hooks/useMainContract"
 import { useWallet } from "../../hooks/useWallet"
 import { parseWalletError } from "../../utils/error"

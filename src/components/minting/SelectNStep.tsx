@@ -1,6 +1,6 @@
 import { Box, Button, Heading, Link, Spinner, Text } from "@chakra-ui/react"
 import React from "react"
-import { SubgraphN } from "../../clients/n"
+import { SubgraphN } from "../../../shared/clients/n"
 import { NWithAvailability } from "../../hooks/useAvailableWalletNs"
 import NGrid from "../NGrid"
 

@@ -25,6 +25,10 @@ export function getNGraphUrl(): string {
   return getNetworkConfig().nGraphUrl
 }
 
+export function getGaussianGraphUrl(): string {
+  return getNetworkConfig().gaussianGraphUrl
+}
+
 export function getBaseFrontendUrl(): string {
   return getNetworkConfig().baseFrontendUrl
 }

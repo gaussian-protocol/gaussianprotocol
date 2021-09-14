@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
-import { getNsByOwner, SubgraphN } from "../clients/n"
+import { getNsByOwner, SubgraphN } from "../../shared/clients/n"
 import { useMainContract } from "./useMainContract"
 import { useWallet } from "./useWallet"
 

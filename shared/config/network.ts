@@ -37,6 +37,7 @@ export type EthNetworkConfig = {
   baseFrontendUrl: string
   openSeaBaseUrl?: string
   openSeaProjectSlug?: string
+  gaussianGraphUrl: string
 }
 
 const localNetworkConfig: EthNetworkConfig = {
@@ -46,6 +47,7 @@ const localNetworkConfig: EthNetworkConfig = {
   contractConfig: localContractConfig.localhost,
   nGraphUrl: "https://api.thegraph.com/subgraphs/name/knav-eth/the-n-project",
   baseFrontendUrl: "http://localhost:3000",
+  gaussianGraphUrl: "https://api.thegraph.com/subgraphs/name/gaussian-devs/gaussian-protocol",
 }
 
 export const NETWORK_CONFIG: Record<EthNetwork, EthNetworkConfig> = {
@@ -64,6 +66,7 @@ export const NETWORK_CONFIG: Record<EthNetwork, EthNetworkConfig> = {
     baseFrontendUrl: "https://nrunes.io",
     openSeaBaseUrl: "https://opensea.io",
     openSeaProjectSlug: "the-gaussian-protocol",
+    gaussianGraphUrl: "https://api.thegraph.com/subgraphs/name/gaussian-devs/gaussian-protocol",
   },
   rinkeby: {
     name: "rinkeby",
@@ -75,5 +78,6 @@ export const NETWORK_CONFIG: Record<EthNetwork, EthNetworkConfig> = {
     baseFrontendUrl: "https://runes.vercel.app",
     openSeaBaseUrl: "https://testnets.opensea.io",
     openSeaProjectSlug: "the-gaussian-protocol",
+    gaussianGraphUrl: "https://api.thegraph.com/subgraphs/name/gaussian-devs/gaussian-protocol",
   },
 }

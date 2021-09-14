@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react"
-import { SubgraphN } from "../clients/n"
+import { SubgraphN } from "../../shared/clients/n"
 import Layout from "../components/Layout"
 import { MintStep } from "../components/minting/MintStep"
 import { SelectNStep } from "../components/minting/SelectNStep"

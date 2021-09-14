@@ -1,5 +1,5 @@
 import { gql, GraphQLClient } from "graphql-request"
-import { getNGraphUrl } from "../utils/network"
+import { getNGraphUrl } from "../../src/utils/network"
 
 export type SubgraphN = {
   id: string
