@@ -45,14 +45,14 @@ export const ExternalLogos = () => {
 
   return (
     <Stack direction="row" spacing={4}>
-      <LogoItem href={DISCORD_INVITE_LINK} image="/discord_logo.png" />
+      <LogoItem href={DISCORD_INVITE_LINK} image="/discord_logo.svg" />
       {etherscanLink && (
-        <LogoItem href={etherscanLink} image="/etherscan_logo.png" />
+        <LogoItem href={etherscanLink} image="/etherscan_logo.svg" />
       )}
       {openseaUrl && (
         <LogoItem href={openseaUrl} image="/opensea_logo.png" />
       )}
-      <LogoItem href={`https://twitter.com/${TWITTER_HANDLE}`} image="/twitter_logo.png" />
+      <LogoItem href={`https://twitter.com/${TWITTER_HANDLE}`} image="/twitter_logo.svg" />
     </Stack>
   )
 }
