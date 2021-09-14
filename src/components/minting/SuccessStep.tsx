@@ -51,10 +51,10 @@ export const SuccessStep: React.FC<SuccessStepProps> = ({ tokenId }) => {
 
   return (
     <Box textAlign="center" width="full">
-      <Heading as="h1" size="4xl" fontSize={["2xl", "3xl", "4xl"]} mb={4}>
-        Mint Gaussian
+      <Heading as="h1" size="4xl" fontSize={["4xl", "5xl", "6xl"]} mb={4} fontFamily="pixel" letterSpacing="5px">
+        Success!
       </Heading>
-      <Text>Success! You have minted #{tokenId}</Text>
+      <Text>You have minted Gaussian #{tokenId}</Text>
       <Box maxWidth="400px" width="90%" marginX="auto" marginY={3}>
         <Box
           backgroundColor="gray.800"
@@ -76,7 +76,13 @@ export const SuccessStep: React.FC<SuccessStepProps> = ({ tokenId }) => {
       )}
 
       <Box marginTop={8}>
-        <Button onClick={handleDone}>Done</Button>
+        <Button
+          onClick={handleDone}
+          letterSpacing="3px"
+          textTransform="uppercase"
+        >
+          Done
+        </Button>
       </Box>
     </Box>
   )

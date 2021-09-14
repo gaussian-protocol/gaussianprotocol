@@ -9,7 +9,8 @@ const theme = extendTheme({
   config,
   fonts: {
     heading: "Source Serif Pro",
-    body: "Roboto",
+    body: "Pixelar Regular W01 Regular",
+    pixel: "Pixelar Regular W01 Regular",
   },
   styles: {
     global: {

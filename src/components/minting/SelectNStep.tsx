@@ -12,7 +12,7 @@ export type SelectNStepProps = {
 export const SelectNStep: React.FC<SelectNStepProps> = ({ onSelectN, availableNs }) => {
   return (
     <Box textAlign="center" width="full">
-      <Heading as="h1" size="4xl" fontSize={["2xl", "3xl", "4xl"]} mb={4}>
+      <Heading as="h1" size="4xl" fontSize={["4xl", "5xl", "6xl"]} mb={4} fontFamily="pixel" letterSpacing="5px">
         Select an N
       </Heading>
       {!availableNs ? (

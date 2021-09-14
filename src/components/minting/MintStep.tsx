@@ -60,7 +60,7 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
 
   return (
     <Box textAlign="center" width="full">
-      <Heading as="h1" size="4xl" fontSize={["2xl", "3xl", "4xl"]} mb={4}>
+      <Heading as="h1" size="4xl" fontSize={["4xl", "5xl", "6xl"]} mb={4} fontFamily="pixel" letterSpacing="5px">
         Mint Gaussian
       </Heading>
       <Text>You are about to mint a Gaussian with N #{selectedN.id}</Text>
@@ -106,10 +106,24 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
         </Box>
       </Box>
       <Box>
-        <Button onClick={onCancel} display="inline-block" mr={2} isDisabled={isMinting}>
+        <Button
+          onClick={onCancel}
+          display="inline-block"
+          mr={2}
+          isDisabled={isMinting}
+          letterSpacing="3px"
+          textTransform="uppercase"
+        >
           Cancel
         </Button>
-        <Button display="inline-block" ml={2} isLoading={isMinting} onClick={handleMint}>
+        <Button
+          display="inline-block"
+          ml={2}
+          isLoading={isMinting}
+          onClick={handleMint}
+          letterSpacing="3px"
+          textTransform="uppercase"
+        >
           Mint
         </Button>
       </Box>
