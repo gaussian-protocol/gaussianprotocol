@@ -41,7 +41,7 @@ export const SelectMintType: React.FC<SelectMintTypeProps> = ({ onSelectMintType
               marginRight={8}>
           <Text fontSize="1.25rem" flex={1}>
             To honor the N project&apos;s innovation in the space we are allowing each N holder
-            to mint the Gaussian with the same ID with priority
+            to mint the Gaussian of the same ID with priority
           </Text>
 
           <Box>
