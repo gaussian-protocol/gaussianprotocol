@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Box, Button, Flex, Image, Stack, StackItem, Text } from "@chakra-ui/react"
 
 import "@fontsource/source-serif-pro/400.css"
