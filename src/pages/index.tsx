@@ -254,7 +254,7 @@ export default function Home() {
               <Text>Your unique art</Text>
             </StackItem>
             <StackItem display="flex" flexDirection="column" flex={1} alignItems="center">
-              <Text minHeight={[0, null, "48px"]} maxWidth="90%">ON-CHAIN, SCIENTIFIC SIMULATIONS</Text>
+              <Text minHeight={[0, null, "48px"]}>ON-CHAIN, SCIENTIFIC SIMULATIONS</Text>
               <Image
                 marginY={3}
                 width={["70%", null, "full"]}
