@@ -32,7 +32,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        <Box position="relative" zIndex={1} mb={[16, null, 24]}>
+        <Box position="relative" zIndex={1} mb={[16, null, 16]}>
           <Image
             width="full"
             src="/gaussian_protocol_logo.png"
@@ -57,6 +57,19 @@ export default function Home() {
             alt="Gaussian Graph Icon"
           />
         </Box>
+
+        <Box textAlign="center" mb={16}>
+          {isConnected ? (
+            <Button onClick={handleGetStarted} size="lg" letterSpacing="5px" textTransform="uppercase">
+              Get Started
+            </Button>
+          ) : (
+            <Box>
+              <ConnectWalletButton />
+            </Box>
+          )}
+        </Box>
+
         <Flex marginX="5%" direction="column">
           <Flex>
             <Box textAlign="left">
