@@ -33,12 +33,21 @@ export const SelectMintType: React.FC<SelectMintTypeProps> = ({ onSelectMintType
       </Heading>
 
       <Flex
+        direction={["column", null, "row"]}
         maxWidth="800px"
         marginX="auto"
         marginTop={12}
       >
-        <Flex direction="column" flex={1} border="1px solid white" paddingX={4} paddingY={8} borderRadius={8}
-              marginRight={8}>
+        <Flex
+          direction="column"
+          flex={1}
+          border="1px solid white"
+          paddingX={4}
+          paddingY={8}
+          borderRadius={8}
+          marginRight={[0, null, 8]}
+          marginBottom={[8, null, 0]}
+        >
           <Text fontSize="1.25rem" flex={1}>
             To honor the N project&apos;s innovation in the space we are allowing each N holder
             to mint the Gaussian of the same ID with priority
@@ -60,7 +69,14 @@ export const SelectMintType: React.FC<SelectMintTypeProps> = ({ onSelectMintType
           </Box>
         </Flex>
 
-        <Box flex={1} border="1px solid white" paddingX={4} paddingY={8} borderRadius={8} marginLeft={8}>
+        <Box
+          flex={1}
+          border="1px solid white"
+          paddingX={4}
+          paddingY={8}
+          borderRadius={8}
+          marginLeft={[0, null, 8]}
+        >
           <Text fontSize="1.25rem">
             Non-holders will be offered the opportunity to claim any unclaimed Gaussians after
             the priority period has elapsed
