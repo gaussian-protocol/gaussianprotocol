@@ -109,8 +109,8 @@ export default function Home() {
                   />
                   <Text marginBottom={[6, null, 12]} flex={1}>
                     And, the rarity goes both ways! You can get a really rare low value
-                    <Box as="span" color="red.500" mx={1}>(critical failure!)</Box>
-                    or a really high value <Box as="span" color="green.500">(critical success!).</Box>
+                    <Box as="span" color="#ED1C24" mx={1}>(critical failure!)</Box>
+                    or a really high value <Box as="span" color="#39B54A">(critical success!).</Box>
                   </Text>
                 </Flex>
                 <Flex justifyContent={["center", null, "flex-end"]}>
