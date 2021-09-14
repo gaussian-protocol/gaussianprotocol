@@ -20,11 +20,11 @@ export const SelectMintType: React.FC<SelectMintTypeProps> = ({ onSelectMintType
     } catch (e) {
       console.error(`Unexpected error occurred while checking public sale status: ${e}`)
     }
-  }, [])
+  }, [mainContract])
 
   useEffect(() => {
     checkPublicSaleStatus()
-  }, [])
+  }, [checkPublicSaleStatus])
 
   return (
     <Box textAlign="center" width="full">
