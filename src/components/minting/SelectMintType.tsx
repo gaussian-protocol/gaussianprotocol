@@ -45,7 +45,16 @@ export const SelectMintType: React.FC<SelectMintTypeProps> = ({ onSelectMintType
           </Text>
 
           <Box>
-            <Button size="lg" letterSpacing="5px" textTransform="uppercase" mt={6} mb={1}>
+            <Button
+              size="lg"
+              letterSpacing="5px"
+              textTransform="uppercase"
+              mt={6}
+              mb={1}
+              onClick={() => {
+                onSelectMintType(MintingType.WithN)
+              }}
+            >
               Mint with N
             </Button>
           </Box>
@@ -64,8 +73,17 @@ export const SelectMintType: React.FC<SelectMintTypeProps> = ({ onSelectMintType
             forceReady={publicSaleIsActive}
           />
 
-          <Button size="lg" letterSpacing="5px" textTransform="uppercase" mt={6} mb={1}
-                  isDisabled={!publicSaleIsActive}>
+          <Button
+            size="lg"
+            letterSpacing="5px"
+            textTransform="uppercase"
+            mt={6}
+            mb={1}
+            isDisabled={!publicSaleIsActive}
+            onClick={() => {
+              onSelectMintType(MintingType.Public)
+            }}
+          >
             Public Mint
           </Button>
         </Box>
