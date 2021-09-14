@@ -97,7 +97,7 @@ export default function Home() {
                   <Text marginBottom={[6, null, 12]} flex={1}>
                     And, the rarity goes both ways! You can get a really rare low value
                     <Box as="span" color="red.500" mx={1}>(critical failure!)</Box>
-                    or a really high value <Box as="span" color="green.500" mx={1}>(critical success!).</Box>
+                    or a really high value <Box as="span" color="green.500">(critical success!).</Box>
                   </Text>
                 </Flex>
                 <Flex justifyContent={["center", null, "flex-end"]}>
@@ -279,6 +279,7 @@ export default function Home() {
             maxWidth="150px"
             marginX="auto"
             marginTop={[12, null, 24]}
+            marginBottom={[4, null, 8]}
             src="/gaus_graph_icon_small.svg"
             alt="Gaussian Graph Icon"
           />
