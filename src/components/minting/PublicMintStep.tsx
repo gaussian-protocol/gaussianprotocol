@@ -1,41 +1,56 @@
-import { Alert, AlertIcon, Box, Button, Heading, Link, Text } from "@chakra-ui/react"
-import React, { useCallback, useMemo, useState } from "react"
-import { SubgraphN } from "../../../shared/clients/n"
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Link,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  Text,
+} from "@chakra-ui/react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
+import { useAsyncDebounce } from "../../hooks/useAsyncDebounce"
 import { useMainContract } from "../../hooks/useMainContract"
 import { useWallet } from "../../hooks/useWallet"
 import { parseWalletError } from "../../utils/error"
 import { getBlockExplorerUrl } from "../../utils/network"
-import NCard from "../NCard/NCard"
 
-export type MintStepProps = {
-  selectedN: SubgraphN
-  onCancel: () => void
+export type PublicMintStepProps = {
   onSuccess: (tokenId: number) => void
 }
 
-export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSuccess }) => {
+export const PublicMintStep: React.FC<PublicMintStepProps> = ({ onSuccess }) => {
   const { wallet } = useWallet()
   const provider = wallet?.web3Provider
   const { mainContract } = useMainContract()
   const [isMinting, setIsMinting] = useState(false)
   const [mintingTxn, setMintingTxn] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [tokenId, setTokenId] = useState<number | null>(null)
+  const [isAvailable, setIsAvailable] = useState<boolean | null>(null)
 
-  const numericId = parseInt(selectedN.id)
+  const canMint = useMemo(() => tokenId !== null && isAvailable === true, [tokenId, isAvailable])
+  const isLoading = useMemo(() => tokenId !== null && isAvailable === null, [tokenId, isAvailable])
 
   const handleMint = useCallback(async () => {
-    if (!provider) return
+    if (!provider || tokenId === null) return
+
     try {
       setIsMinting(true)
       setErrorMessage(null)
       const signer = provider.getSigner()
       const contractWithSigner = mainContract.connect(signer)
 
-      const result = await contractWithSigner.mintWithN(numericId)
+      const result = await contractWithSigner.mint(tokenId)
 
       setMintingTxn(result.hash)
       await result.wait()
-      onSuccess(numericId)
+      onSuccess(tokenId)
     } catch (e) {
       // @ts-ignore
       window.MM_ERR = e
@@ -45,7 +60,29 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
     } finally {
       setIsMinting(false)
     }
-  }, [provider, mainContract, numericId, onSuccess])
+  }, [provider, mainContract, tokenId, onSuccess])
+
+  const checkTokenAvailability = useCallback(
+    async (tokenId: number): Promise<void> => {
+      if (!process.browser) return
+      setIsAvailable(null)
+
+      try {
+        setIsAvailable(!Boolean(await mainContract.ownerOf(tokenId)))
+      } catch (e) {
+        setIsAvailable(true)
+      }
+    },
+    [mainContract],
+  )
+
+  const debouncedCheckTokenAvailability = useAsyncDebounce(checkTokenAvailability, 200)
+
+  useEffect(() => {
+    if (tokenId !== null) {
+      debouncedCheckTokenAvailability(tokenId)
+    }
+  }, [debouncedCheckTokenAvailability, tokenId])
 
   const transactionUrl: string | undefined = useMemo(() => {
     if (!mintingTxn || !isMinting) {
@@ -63,7 +100,25 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
       <Heading as="h1" size="4xl" fontSize={["4xl", "5xl", "6xl"]} mb={4} fontFamily="pixel" letterSpacing="5px">
         Mint Gaussian
       </Heading>
-      <Text>You are about to mint a Gaussian with N #{selectedN.id}</Text>
+      <Text>Enter the ID of the Gaussian you would like to mint.</Text>
+
+      <Flex
+        marginX="auto"
+        marginTop={4}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <NumberInput onChange={(tokenIdStr, tokenIdNum) => {
+          setTokenId(tokenIdNum)
+        }}>
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+      </Flex>
+
       <Box
         maxWidth="400px"
         width="90%"
@@ -93,29 +148,19 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
             </Alert>
           </Link>
         )}
-
-        <Box
-          backgroundColor="gray.800"
-          borderWidth="4px"
-          borderColor="transparent"
-          borderStyle="solid"
-          width="full"
-          position="relative"
-        >
-          <NCard n={selectedN} />
-        </Box>
+      </Box>
+      <Box width="90%" maxWidth="400px" marginX="auto">
+        {isAvailable === false && (
+          <Alert status="error" mb={3}>
+            <AlertIcon />
+            <Text fontWeight="semibold" marginRight={1}>
+              Error:
+            </Text>
+            Token has already been claimed
+          </Alert>
+        )}
       </Box>
       <Box>
-        <Button
-          onClick={onCancel}
-          display="inline-block"
-          mr={2}
-          isDisabled={isMinting}
-          letterSpacing="3px"
-          textTransform="uppercase"
-        >
-          Cancel
-        </Button>
         <Button
           display="inline-block"
           ml={2}
@@ -123,6 +168,8 @@ export const MintStep: React.FC<MintStepProps> = ({ selectedN, onCancel, onSucce
           onClick={handleMint}
           letterSpacing="3px"
           textTransform="uppercase"
+          isDisabled={!canMint}
+          isLoading={isLoading}
         >
           Mint
         </Button>
