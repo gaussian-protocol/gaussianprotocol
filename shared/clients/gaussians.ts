@@ -74,3 +74,28 @@ export async function getGaussiansByOwner(walletAddress: string): Promise<Array<
   const data = await client.request<ListGaussiansResponse>(query, variables)
   return data?.gaussians ?? []
 }
+
+export async function getAllGaussians(): Promise<Array<SubgraphGaussian>> {
+  const client = new GraphQLClient(getGaussianGraphUrl())
+
+  const gaussians: Array<SubgraphGaussian> = []
+  let skip = 0
+  while (true) {
+    const query = gql`
+        query getAllGaussians($skip: Int!) {
+            gaussians(first: 1000, skip: $skip) {
+                ${GAUSSIAN_FRAGMENT}
+            }
+        }
+    `
+    const variables = {
+      skip,
+    }
+    const data = await client.request<ListGaussiansResponse>(query, variables)
+    gaussians.push(...data.gaussians)
+    if (data.gaussians.length === 0) {
+      return gaussians
+    }
+    skip += 1000
+  }
+}

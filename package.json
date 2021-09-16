@@ -31,6 +31,7 @@
     "@types/raf": "^3.4.0",
     "@types/react-color": "^3.0.5",
     "@walletconnect/web3-provider": "^1.6.5",
+    "axios": "^0.21.4",
     "chrome-aws-lambda": "^10.1.0",
     "color": "^4.0.1",
     "ethers": "^5.4.4",
