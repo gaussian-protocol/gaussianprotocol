@@ -164,12 +164,11 @@ export const PublicMintStep: React.FC<PublicMintStepProps> = ({ onSuccess }) => 
         <Button
           display="inline-block"
           ml={2}
-          isLoading={isMinting}
+          isLoading={isLoading || isMinting}
           onClick={handleMint}
           letterSpacing="3px"
           textTransform="uppercase"
           isDisabled={!canMint}
-          isLoading={isLoading}
         >
           Mint
         </Button>
