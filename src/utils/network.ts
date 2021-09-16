@@ -1,6 +1,6 @@
 import { EthNetwork, EthNetworkConfig, NETWORK_CONFIG } from "../../shared/config/network"
 
-const ENV_VAR_NET_NAME = "localhost" //process.env.NEXT_PUBLIC_ETH_NETWORK ?? "mainnet"
+const ENV_VAR_NET_NAME = process.env.NEXT_PUBLIC_ETH_NETWORK ?? "mainnet"
 console.log(`Current Network: ${ENV_VAR_NET_NAME}`)
 
 export function getCurrentNetwork(): EthNetwork {
