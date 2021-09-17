@@ -3,7 +3,7 @@
 import { Box, Button, Flex, Heading, Link, Text } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { parseMetadata } from "../../../shared/utils/metadata"
+import { base64EncodeImageContent } from "../../../shared/utils/metadata"
 import { useMainContract } from "../../hooks/useMainContract"
 import { getNetworkConfig } from "../../utils/network"
 import { ROUTES } from "../../utils/routing"
@@ -19,12 +19,9 @@ export const SuccessStep: React.FC<SuccessStepProps> = ({ tokenId }) => {
 
   const retrieveTokenAsset = useCallback(
     async (tokenId: number) => {
-      const encodedMetadata = await mainContract.tokenURI(tokenId)
-      const parsedMetadata = parseMetadata(encodedMetadata, false)
-      console.log("parsedMetadata")
-      console.log(parsedMetadata)
-      console.log("----")
-      setSvgContent(parsedMetadata.image)
+      const svgString = await mainContract.tokenSVG(tokenId)
+      const base64EncodedImage = base64EncodeImageContent(svgString)
+      setSvgContent(base64EncodedImage)
     },
     [mainContract],
   )

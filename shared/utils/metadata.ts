@@ -23,3 +23,7 @@ export function parseMetadata(metadataStr: string, decodeImage = true): TokenMet
     image: decodeImage ? metadata?.image && parseImage(metadata.image) : metadata.image,
   }
 }
+
+export function base64EncodeImageContent(content: string): string {
+  return `data:image/svg+xml;base64,${Buffer.from(content).toString("base64")}`
+}
