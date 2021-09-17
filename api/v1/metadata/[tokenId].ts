@@ -33,7 +33,44 @@ export default async function handler(
       name: token.name,
       description,
       image: highFidelityAssetExists ? highFidelityAddress : token.imageURI,
-      attributes: [],
+      attributes: [
+        {
+          "trait_type": "1st",
+          "value": token.first,
+        },
+        {
+          "trait_type": "2nd",
+          "value": token.second,
+        },
+        {
+          "trait_type": "3rd",
+          "value": token.third,
+        },
+        {
+          "trait_type": "4th",
+          "value": token.fourth,
+        },
+        {
+          "trait_type": "5th",
+          "value": token.fifth,
+        },
+        {
+          "trait_type": "6th",
+          "value": token.sixth,
+        },
+        {
+          "trait_type": "7th",
+          "value": token.seventh,
+        },
+        {
+          "trait_type": "8th",
+          "value": token.eighth,
+        },
+        {
+          "trait_type": "Sum",
+          "value": token.numbers.reduce((prev, next) => prev + next, 0),
+        },
+      ],
     }
 
     res.end(JSON.stringify(metadata, null, 2))
