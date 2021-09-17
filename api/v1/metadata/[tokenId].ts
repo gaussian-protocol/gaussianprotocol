@@ -36,39 +36,39 @@ export default async function handler(
       attributes: [
         {
           "trait_type": "1st",
-          "value": token.first,
+          "value": token.first.toString(),
         },
         {
           "trait_type": "2nd",
-          "value": token.second,
+          "value": token.second.toString(),
         },
         {
           "trait_type": "3rd",
-          "value": token.third,
+          "value": token.third.toString(),
         },
         {
           "trait_type": "4th",
-          "value": token.fourth,
+          "value": token.fourth.toString(),
         },
         {
           "trait_type": "5th",
-          "value": token.fifth,
+          "value": token.fifth.toString(),
         },
         {
           "trait_type": "6th",
-          "value": token.sixth,
+          "value": token.sixth.toString(),
         },
         {
           "trait_type": "7th",
-          "value": token.seventh,
+          "value": token.seventh.toString(),
         },
         {
           "trait_type": "8th",
-          "value": token.eighth,
+          "value": token.eighth.toString(),
         },
         {
           "trait_type": "Sum",
-          "value": token.numbers.reduce((prev, next) => prev + next, 0),
+          "value": token.numbers.reduce((prev, next) => prev + next, 0).toString(),
         },
       ],
     }
