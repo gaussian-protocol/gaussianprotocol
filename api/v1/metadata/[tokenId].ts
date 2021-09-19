@@ -1,6 +1,5 @@
 import { exists } from "fs"
 import type { NextApiRequest, NextApiResponse } from "next"
-import * as path from "path"
 import { promisify } from "util"
 import { getGaussianById } from "../../../shared/clients/gaussians"
 import { getTokenId } from "../../_lib/params"
@@ -34,13 +33,10 @@ export default async function handler(
       return
     }
 
-    const highFidelityAssetExists = await existsAsync(path.join(__dirname, "../../../public/gaussians", `${tokenId}.png`))
-    const highFidelityAddress = `https://www.gaussianprotocol.io/gaussians/${tokenId}.png`
-
     const metadata = {
       name: token.name,
       description,
-      image: highFidelityAssetExists ? highFidelityAddress : token.imageURI,
+      image: token.imageURI,
       attributes: [
         {
           "trait_type": "1st",
