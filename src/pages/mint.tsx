@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react"
+import { useRouter } from "next/router"
+import React, { useCallback, useEffect, useState } from "react"
 import { SubgraphN } from "../../shared/clients/n"
 import Layout from "../components/Layout"
 import { MintingType } from "../components/minting/MintingType"
@@ -14,11 +15,15 @@ export default function Mint() {
   const [mintingType, setMintingType] = useState<MintingType | null>(null)
   const [selectedN, setSelectedN] = useState<SubgraphN | null>(null)
   const [mintedTokenId, setMintedTokenId] = useState<number | null>(null)
-
+  const router = useRouter()
 
   const handleCancelMint = useCallback(() => {
     setSelectedN(null)
   }, [])
+
+  useEffect(() => {
+    router.replace("/")
+  }, [router])
 
   return (
     <Layout requireWallet>

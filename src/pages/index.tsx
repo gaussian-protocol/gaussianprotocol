@@ -60,8 +60,8 @@ export default function Home() {
 
         <Box textAlign="center" mb={16}>
           {isConnected ? (
-            <Button onClick={handleGetStarted} size="lg" letterSpacing="5px" textTransform="uppercase">
-              Get Started
+            <Button isDisabled size="lg" letterSpacing="5px" textTransform="uppercase">
+              Sold Out
             </Button>
           ) : (
             <Box>
@@ -300,8 +300,8 @@ export default function Home() {
 
           <Box textAlign="center" my={8}>
             {isConnected ? (
-              <Button onClick={handleGetStarted} size="lg" letterSpacing="5px" textTransform="uppercase">
-                Get Started
+              <Button isDisabled size="lg" letterSpacing="5px" textTransform="uppercase">
+                Sold Out
               </Button>
             ) : (
               <Box>
