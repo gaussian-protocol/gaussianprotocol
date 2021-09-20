@@ -36,7 +36,7 @@ export default async function handler(
     const metadata = {
       name: token.name,
       description,
-      image: token.imageURI,
+      image: `https://gateway.pinata.cloud/ipfs/QmTT1PCEu5TmovuxWWzxjfhDqnSxp3WiGH2qeM2jBFFpnm/${tokenId}.png`,
       attributes: [
         {
           "trait_type": "1st",
