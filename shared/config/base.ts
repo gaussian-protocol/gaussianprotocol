@@ -1,6 +1,7 @@
 import { DateTime } from "luxon"
 
 export const INFURA_ID = process.env.NEXT_PUBLIC_INFURA_PROJECT_ID
+export const ALCHEMY_ID = process.env.NEXT_PUBLIC_ALCHEMY_PROJECT_ID
 export const PUBLIC_SALE_TIMESTAMP = parseInt(process.env.NEXT_PUBLIC_PUBLIC_SALE_TIMESTAMP!) ?? 1631905236353
 
 export const PUBLIC_SALE_DATETIME = DateTime.fromMillis(1631905236353)
